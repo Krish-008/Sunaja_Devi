@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export const metadata = {
   title: "Sunaja Devi K R - Google Scholar Profile",
   description:
@@ -212,7 +214,7 @@ export default function ScholarPage() {
         {/* Profile Header */}
         <div className="scholar-header" id="scholar-profile-header">
           <Image
-            src="/images/professor.png"
+            src={`${basePath}/images/professor.png`}
             alt="Sunaja Devi K R"
             width={100}
             height={100}

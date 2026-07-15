@@ -2,6 +2,8 @@ import Sidebar from "@/components/Sidebar";
 import Image from "next/image";
 import Link from "next/link";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const researchAreas = [
   {
     icon: "⚡",
@@ -105,7 +107,7 @@ export default function HomePage() {
         <section className="hero">
           <div className="hero-bg" style={{ position: "absolute" }}>
             <Image
-              src="/images/lab-banner.png"
+              src={`${basePath}/images/lab-banner.png`}
               alt="Chemistry Research Laboratory"
               fill
               priority
@@ -116,7 +118,7 @@ export default function HomePage() {
           <div className="hero-content">
             <div className="hero-portrait">
               <Image
-                src="/images/professor.png"
+                src={`${basePath}/images/professor.png`}
                 alt="Prof. Sunaja Devi K R"
                 width={280}
                 height={280}
@@ -246,7 +248,7 @@ export default function HomePage() {
 
           <div className="research-gallery">
             <Image
-              src="/images/research.png"
+              src={`${basePath}/images/research.png`}
               alt="Advanced MOFs and Nanocomposites Research"
               width={600}
               height={180}
