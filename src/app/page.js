@@ -88,13 +88,34 @@ const publications = [
   },
 ];
 
-const groupMembers = [
-  { name: "Dr. Anitha M", role: "Post-Doctoral Fellow", initials: "AM" },
-  { name: "Ranjith Kumar S", role: "PhD Scholar", initials: "RK" },
-  { name: "Priya Dharshini V", role: "PhD Scholar", initials: "PD" },
-  { name: "Arun Kumar B", role: "PhD Scholar", initials: "AK" },
-  { name: "Meghana R", role: "M.Sc. Researcher", initials: "MR" },
-  { name: "Vishnu Priya T", role: "M.Sc. Researcher", initials: "VP" },
+function getInitials(name) {
+  const words = name.replace(/^Dr\.\s*/i, "").split(" ").filter(Boolean);
+  return ((words[0]?.[0] || "") + (words[words.length - 1]?.[0] || "")).toUpperCase();
+}
+
+const groupCategories = [
+  {
+    category: "Post-Doctoral Researcher",
+    members: ["Dr. Pushparaj Loganathan"],
+  },
+  {
+    category: "PhD Scholars",
+    members: ["Cheriyan John"],
+  },
+  {
+    category: "Past Members",
+    members: [
+      "Dr. Dephan Phinero",
+      "Dr. Shalini Reghunath",
+      "Dr. Sruthi Rajasekaran",
+      "Dr. Arun Varghese Ayyamala",
+      "Dr. Sandra Mathew",
+      "Dr. Muthukumar Devarasu",
+      "Dr. Madhushree",
+      "Dr. Samika Anand",
+      "Dr. Sujith S",
+    ],
+  },
 ];
 
 export default function HomePage() {
@@ -318,15 +339,33 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="group-grid">
-            {groupMembers.map((member, idx) => (
-              <div className="member-card" key={idx} id={`member-card-${idx}`}>
-                <div className="member-avatar">{member.initials}</div>
-                <h4>{member.name}</h4>
-                <p className="member-role">{member.role}</p>
+          {groupCategories.map((group, groupIdx) => (
+            <div key={group.category} style={{ marginBottom: "36px" }}>
+              <h3
+                style={{
+                  fontSize: "1.1rem",
+                  fontWeight: 600,
+                  color: "var(--primary)",
+                  marginBottom: "20px",
+                }}
+              >
+                {group.category}
+              </h3>
+              <div className="group-grid">
+                {group.members.map((name, idx) => (
+                  <div
+                    className="member-card"
+                    key={name}
+                    id={`member-card-${groupIdx}-${idx}`}
+                  >
+                    <div className="member-avatar">{getInitials(name)}</div>
+                    <h4>{name}</h4>
+                    <p className="member-role">{group.category}</p>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </section>
 
         {/* Collaborations Section */}
